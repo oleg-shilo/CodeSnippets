@@ -81,6 +81,7 @@ namespace ConsoleApp
 
             var json = JsonConvert.SerializeObject(123);
 
+            // find all calls `JsonConvert.SerializeObject`
             Assembly.GetExecutingAssembly().VisitMethodCalls(
                 (caller, called) =>
                 {
@@ -91,6 +92,7 @@ namespace ConsoleApp
                     return true;
                 });
 
+            // find all methods from this assembly that are never called.
             var deadMethods = Assembly.GetExecutingAssembly().GetNonReferencedMethods();
         }
     }
